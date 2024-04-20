@@ -1,0 +1,4 @@
+[1,"- The project is out-of-sync -- use `renv::status()` for details.\n"]
+[2,"Warning message:\nThe 'yaml' package is required to parse dependencies within Quarto Markdown files\nConsider installing it with `install.packages(\"yaml\")`. \n"]
+[1,"** Installing R Packages: 'rmarkdown', 'rstudioapi'\n"]
+[1,"[1/12] Installing bslib...\n"]

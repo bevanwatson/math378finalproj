@@ -1,0 +1,11 @@
+"0","b = pins.board_folder('/data/model', allow_pickle_read=True)"
+"2","Traceback (most recent call last):
+  File ""<string>"", line 1, in <module>
+NameError: name 'pins' is not defined
+"
+"0","v = VetiverModel.from_pin(b, 'penguin_model', "
+"0","                          version = '20230422T102952Z-cb1f9')"
+"2","Traceback (most recent call last):
+  File ""<string>"", line 1, in <module>
+NameError: name 'VetiverModel' is not defined
+"

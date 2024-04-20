@@ -1,0 +1,11 @@
+"0","library(reticulate)"
+"0","use_virtualenv(""/Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/venv"", required = TRUE)"
+"2","ERROR: The requested version of Python ('/Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/venv/bin/python') cannot
+"
+"2","be used, as another version of Python ('/usr/local/bin/python3.12') has already been initialized. Please restart the R session
+"
+"2","if you need to attach reticulate to a different version of Python.
+"
+"2","Error in use_python(python, required = required) : 
+  failed to initialize requested version of Python
+"

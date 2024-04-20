@@ -1,0 +1,9 @@
+"0","reticulate::py_config()"
+"1","python:         /usr/local/bin/python3.12
+libpython:      /usr/local/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12/config-3.12-darwin/libpython3.12.dylib
+pythonhome:     /usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12:/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12
+version:        3.12.0 (main, Oct  5 2023, 15:48:48) [Clang 14.0.0 (clang-1400.0.29.202)]
+numpy:           [NOT FOUND]
+
+NOTE: Python version was forced by use_python() function
+"

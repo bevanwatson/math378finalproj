@@ -1,0 +1,24 @@
+"0","library(reticulate)"
+"0","py_config()"
+"1","python:         /usr/local/bin/python3.12
+libpython:      /usr/local/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12/config-3.12-darwin/libpython3.12.dylib
+pythonhome:     /usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12:/usr/local/Cellar/python@3.12/3.12.0/Frameworks/Python.framework/Versions/3.12
+version:        3.12.0 (main, Oct  5 2023, 15:48:48) [Clang 14.0.0 (clang-1400.0.29.202)]
+numpy:           [NOT FOUND]
+
+NOTE: Python version was forced by use_python() function
+"
+"0","use_virtualenv(""/Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/venv"", required = TRUE)"
+"2","ERROR: The requested version of Python ('/Users/bevanwatson/Desktop/SPRING
+"
+"2","2024/MATH378/Final_Project/venv/bin/python') cannot be used, as another version
+"
+"2","of Python ('/usr/local/bin/python3.12') has already been initialized. Please
+"
+"2","restart the R session if you need to attach reticulate to a different version of
+"
+"2","Python.
+"
+"2","Error in use_python(python, required = required) : 
+  failed to initialize requested version of Python
+"
