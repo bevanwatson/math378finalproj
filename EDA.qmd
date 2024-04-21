@@ -9,11 +9,11 @@ format:
 
 ```{r}
 library(palmerpenguins)
-#library(dplyr)
+library(dplyr)
 library(ggplot2)
 library(DBI)
-library(duckdb)Y
-#library(dbplyer)
+library(duckdb)
+library(dbplyr)
 
 df <- palmerpenguins::penguins
 ```
