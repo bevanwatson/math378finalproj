@@ -10,7 +10,7 @@ website:
         text: Home
       - about.qmd
       - model.qmd
-      - eda.qmd
+      - EDA.qmd
 
 format:
   html:
