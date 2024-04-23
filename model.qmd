@@ -5,12 +5,12 @@ format:
     code-fold: true
 ---
 
-```{r}
+```{r echo = FALSE}
 library(reticulate)
 use_python("/Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/venv/bin/python", required = TRUE)
 ```
 
-```{python}
+```{python echo = FALSE}
 from palmerpenguins import penguins
 from pandas import get_dummies
 import numpy as np
@@ -20,7 +20,7 @@ from sklearn import preprocessing
 
 ## Get Data
 
-```{python}
+```{python echo = FALSE}
 df = penguins.load_penguins().dropna()
 
 df.head(3)
@@ -28,7 +28,7 @@ df.head(3)
 
 ## Define Model and Fit
 
-```{python}
+```{python echo = FALSE}
 X = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)
 y = df['body_mass_g']
 
@@ -37,14 +37,14 @@ model = LinearRegression().fit(X, y)
 
 ## Get some information
 
-```{python}
+```{python echo = FALSE}
 print(f"R^2 {model.score(X,y)}")
 print(f"Intercept {model.intercept_}")
 print(f"Columns {X.columns}")
 print(f"Coefficients {model.coef_}")
 ```
 
-```{python}
+```{python echo = FALSE}
 from vetiver import VetiverModel
 v = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)
 
@@ -54,12 +54,12 @@ b = board_folder('data/model', allow_pickle_read = True)
 vetiver_pin_write(b, v)
 ```
 
-```{python}
+```{python echo = FALSE}
 from vetiver import VetiverAPI
 app = VetiverAPI(v, check_prototype = True)
 ```
 
-```{python}
+```{python echo = FALSE}
 import duckdb
 from palmerpenguins import penguins
 
