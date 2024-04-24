@@ -14,7 +14,6 @@ library(ggplot2)
 library(DBI)
 library(duckdb)
 library(dbplyr)
-
 df <- palmerpenguins::penguins
 ```
 
@@ -28,13 +27,13 @@ df <- dplyr::tbl(con, "penguins")
 
 ## Penguin Size vs Mass by Species
 
-```{r echo=FALSE}
+```{r}
 df %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
   geom_point() + 
   geom_smooth(method = "lm")
 ```
 
-```{r echo=FALSE}
+```{r}
 DBI::dbDisconnect(con)
 ```

@@ -4,6 +4,4 @@ title: "About"
 
 About this site
 
-```{r}
-1 + 1
-```
+![](/Users/bevanwatson/Desktop/SPRING%202024/MATH378/Final_Project/palmerpenguins.png "Penguin")
