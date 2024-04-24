@@ -53,13 +53,13 @@
     "href": "model.html#get-some-information",
     "title": "Model",
     "section": "Get some information",
-    "text": "Get some information\n\n\nR^2 0.8555368759537614\n\n\nIntercept 2169.2697209393973\n\n\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\n\n\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240424T135624Z-7b910"
+    "text": "Get some information\n\n\nR^2 0.8555368759537614\n\n\nIntercept 2169.2697209393973\n\n\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\n\n\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240424T140857Z-7b910"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Final_Project",
     "section": "",
-    "text": "This Bevan Watson’s Math 378 Final Project\n\n1 + 1\n\n[1] 2"
+    "text": "This Bevan Watson’s Math 378 Final Project\n!Penguins\n\n1 + 1\n\n[1] 2"
   }
 ]

@@ -4,6 +4,8 @@ title: "Final_Project"
 
 This Bevan Watson's Math 378 Final Project
 
+\![Penguins](/Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/images/palmerpenguins.png)
+
 ```{r}
 1 + 1
 ```
