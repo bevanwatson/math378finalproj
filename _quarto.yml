@@ -8,15 +8,16 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - model.qmd
       - EDA.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: spacelab
     css: styles.css
     toc: true
+    toc-float: true
+    favicon: /Users/bevanwatson/Desktop/SPRING 2024/MATH378/Final_Project/images/penguin_favicon.jpeg
 
 editor: visual
 
