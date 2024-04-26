@@ -12,7 +12,9 @@ library(reticulate)
 use_python("/Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/bin/python", required = TRUE)
 ```
 
-```{python warning}
+```{python}
+#| message: false
+#| warning: false
 from palmerpenguins import penguins
 from pandas import get_dummies
 import numpy as np
@@ -24,6 +26,14 @@ from vetiver import vetiver_pin_write
 import duckdb
 from palmerpenguins import penguins
 from vetiver import VetiverAPI
+from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.impute import SimpleImputer
+from sklearn.tree import plot_tree
 ```
 
 ## Get Data
@@ -32,31 +42,84 @@ from vetiver import VetiverAPI
 #| message: false
 #| warning: false
 df = penguins.load_penguins().dropna()
-
 df.head(3)
 ```
 
-## Define Model and Fit
+```{python}
+df.info()
+```
+
+## Define Linear Model and Fit
 
 ```{python}
 #| message: false
 #| warning: false
-X = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)
+X = get_dummies(df[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm','species', 'sex']], drop_first = True)
 y = df['body_mass_g']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=28)
+model = LinearRegression()
+model.fit(X_train, y_train)
 
-model = LinearRegression().fit(X, y)
+X1 = get_dummies(df[['bill_length_mm', 'flipper_length_mm', 'species', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X1, y, test_size=0.2, random_state=28)
+model1 = LinearRegression()
+model1.fit(X_train, y_train)
+
+X2 = get_dummies(df[['bill_length_mm', 'bill_depth_mm', 'species', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X2, y, test_size=0.2, random_state=28)
+model2 = LinearRegression()
+model2.fit(X_train, y_train)
+
+X3 = get_dummies(df[['bill_depth_mm', 'flipper_length_mm', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X3, y, test_size=0.2, random_state=28)
+model3 = LinearRegression()
+model3.fit(X_train, y_train)
+
+X4 = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X4, y, test_size=0.2, random_state=28)
+model4 = LinearRegression()
+model4.fit(X_train, y_train)
+
+X5 = get_dummies(df[['bill_depth_mm', 'species', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X5, y, test_size=0.2, random_state=28)
+model5 = LinearRegression()
+model5.fit(X_train, y_train)
+
+X6 = get_dummies(df[['bill_depth_mm', 'species', 'sex']], drop_first = True)
+X_train, X_test, y_train, y_test = train_test_split(X6, y, test_size=0.2, random_state=28)
+model6 = LinearRegression()
+model6.fit(X_train, y_train)
 ```
-
-## Get some information
 
 ```{python}
 #| message: false
 #| warning: false
-print(f"R^2 {model.score(X,y)}")
-print(f"Intercept {model.intercept_}")
-print(f"Columns {X.columns}")
-print(f"Coefficients {model.coef_}")
+Xtree = df[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm']]
+ytree = df['species']
+
+# test_train split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=28)
+
+tree_model = DecisionTreeClassifier(random_state=28)
+tree_model.fit(X_train, y_train)
+
+##CHATGPT WROTE THIS
+plot_tree(tree_model)
+plt.show()
 ```
+
+## Get Some Information from Linear Model
+
+```{python}
+#| message: false
+#| warning: false
+#print(f"R^2 {model.score(X,y)}")
+#print(f"Intercept {model.intercept_}")
+#print(f"Columns {X.columns}")
+#print(f"Coefficients {model.coef_}")
+```
+
+## Write Initial Model to API
 
 ```{python}
 #| message: false

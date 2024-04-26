@@ -7,7 +7,7 @@ format:
 
 ## Penguin Size and Mass by Sex and Species
 
-**On this page, I'll use the R library ggplot2 to visualize the dataset, as well as load it into a DuckDB database.**
+**On this page, I'll use the R library ggplot2 to visualize the dataset, as well as load it into a DuckDB database. I am interested in 3 attributes in the penguin dataset: bill length, flipper length, and bill depth. I am interest how each attribute effects the weight, and how that differs across the 3 species.**
 
 First, I'll load necessary r packages
 
@@ -22,7 +22,7 @@ library(dbplyr)
 
 Load penguins dataset (cleaned version)
 
-```{warning=FALSE, message=FALSE}
+``` {warning="FALSE," message="FALSE"}
 df <- palmerpenguins::penguins
 ```
 
@@ -34,24 +34,37 @@ con <- DBI::dbConnect(
 df <- dplyr::tbl(con, "penguins")
 ```
 
+Next, I'll create a multitude of graphs to visualize the dataset. First, histograms that show the spread of the entire dataset, then some scatterplots to break down the 3 variables of interest by species.
+
 ## Distribution of Flipper Length
 
 ```{r warning=FALSE, message=FALSE}
 df %>%
 ggplot(aes(x = flipper_length_mm)) +
-  geom_histogram(binwidth = 5, fill = "darkblue", color = "darkorange") +
+  geom_histogram(binwidth = 3, fill = "darkblue", color = "darkorange") +
   ggtitle("Distribution of Flipper Length") +
   xlab("Flipper Length (mm)") +
   ylab("Count")
 ```
 
-## Distribution and Bill length
+## Distribution of Bill length
 
 ```{r warning=FALSE, message=FALSE}
 df %>%
 ggplot(aes(x = bill_length_mm)) +
-  geom_histogram(binwidth = 5, fill = "darkblue", color = "darkorange") +
+  geom_histogram(binwidth = 3, fill = "darkblue", color = "darkorange") +
   ggtitle("Distribution of Flipper Length") +
+  xlab("Flipper Length (mm)") +
+  ylab("Count")
+```
+
+## Distribution of Bill Depth
+
+```{r warning=FALSE, message=FALSE}
+df %>%
+ggplot(aes(x = bill_depth_mm)) +
+  geom_histogram(binwidth = 1, fill = "darkblue", color = "darkorange") +
+  ggtitle("Distribution of Bill Depth") +
   xlab("Flipper Length (mm)") +
   ylab("Count")
 ```
@@ -65,29 +78,42 @@ df %>%
   geom_smooth(method = "lm") +
   labs(x = "Bill Length (mm)", 
        y = "Body Mass (g)", 
-       title = "Relationship Between Bill Length and Body Mass")
+       title = "Relationship Between Bill Length and Body Mass",)
 ```
+
+## Penguin Bill Depth vs Mass by Species
+
+```{r warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  labs(x = "Bill Depth (mm)", 
+       y = "Body Mass (g)", 
+       title = "Relationship Between Bill Depth and Body Mass",)
+```
+
+```{r warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  labs(x = "Flipper Length (mm)", 
+       y = "Body Mass (g)", 
+       title = "Relationship Between Flipper Length and Body Mass",)
+```
+
+## Bill Length vs Flipper Length
 
 ```{r message = FALSE, warning = FALSE}
 df %>%
-ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
   geom_point() +
   labs(
     title = "Bill Length vs Flipper Length",
     x = "Bill Length (mm)",
     y = "Flipper Length (mm)"
   )
-```
-
-```{r message = FALSE, warning = FALSE}
-df %>%
-  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + 
-  geom_smooth(method = "lm") +
-  labs(x = "Bill Length (mm)", 
-       y = "Body Mass (g)", 
-       title = "Relationship Between Bill Length and Body Mass",
-       color = "Species")
 ```
 
 ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAaCAYAAADFTB7LAAAAcElEQVR4Xu3OwQmAQAxE0bClWYCW5N06tM6V2YPg5CjoF/JhLoHAi6iqn9eOefUbqrYvHY0cQDLyAlKRNyARmYA0ZMLRkAlGQyaU72tkAtlim7r/vJqDUDjlKBROOQyFU2icQuMUGqfQuBEaV1XPOwEx96nYACK8+wAAAABJRU5ErkJggg== "Run Current Chunk"){width="40"}
