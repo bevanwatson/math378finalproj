@@ -21,18 +21,32 @@
     "text": "Code\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(DBI)\nlibrary(duckdb)\nlibrary(dbplyr)\ndf &lt;- palmerpenguins::penguins\n\n\n\n\nCode\ncon &lt;- DBI::dbConnect(\n  duckdb::duckdb(), \n  dbdir = \"my-db.duckdb\"\n  )\ndf &lt;- dplyr::tbl(con, \"penguins\")"
   },
   {
-    "objectID": "EDA.html#penguin-size-vs-mass-by-species",
-    "href": "EDA.html#penguin-size-vs-mass-by-species",
+    "objectID": "EDA.html#distribution-of-flipper-length",
+    "href": "EDA.html#distribution-of-flipper-length",
     "title": "Penguins EDA",
-    "section": "Penguin Size vs Mass by Species",
-    "text": "Penguin Size vs Mass by Species\n\n\nCode\ndf %&gt;%\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")\n\n\n\n\n\n{#{r warning=FALSE, message=FALSE} #renv::restore(packages = \"renv\")"
+    "section": "Distribution of Flipper Length",
+    "text": "Distribution of Flipper Length\n\n\nCode\ndf %&gt;%\nggplot(aes(x = flipper_length_mm)) +\n  geom_histogram(binwidth = 5, fill = \"darkblue\", color = \"darkorange\") +\n  ggtitle(\"Distribution of Flipper Length\") +\n  xlab(\"Flipper Length (mm)\") +\n  ylab(\"Count\")"
+  },
+  {
+    "objectID": "EDA.html#distribution-and-bill-length",
+    "href": "EDA.html#distribution-and-bill-length",
+    "title": "Penguins EDA",
+    "section": "Distribution and Bill length",
+    "text": "Distribution and Bill length\n\n\nCode\ndf %&gt;%\nggplot(aes(x = bill_length_mm)) +\n  geom_histogram(binwidth = 5, fill = \"darkblue\", color = \"darkorange\") +\n  ggtitle(\"Distribution of Flipper Length\") +\n  xlab(\"Flipper Length (mm)\") +\n  ylab(\"Count\")"
+  },
+  {
+    "objectID": "EDA.html#penguin-bill-length-vs-mass-by-species",
+    "href": "EDA.html#penguin-bill-length-vs-mass-by-species",
+    "title": "Penguins EDA",
+    "section": "Penguin Bill Length vs Mass by Species",
+    "text": "Penguin Bill Length vs Mass by Species\n\n\nCode\ndf %&gt;%\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point() + \n  geom_smooth(method = \"lm\") +\n  labs(x = \"Bill Length (mm)\", \n       y = \"Body Mass (g)\", \n       title = \"Relationship Between Bill Length and Body Mass\")\n\n\n\n\n\n\n\nCode\ndf %&gt;%\nggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +\n  geom_point() +\n  labs(\n    title = \"Bill Length vs Flipper Length\",\n    x = \"Bill Length (mm)\",\n    y = \"Flipper Length (mm)\"\n  )\n\n\n\n\n\n\n\nCode\ndf %&gt;%\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point() + \n  geom_smooth(method = \"lm\") +\n  labs(x = \"Bill Length (mm)\", \n       y = \"Body Mass (g)\", \n       title = \"Relationship Between Bill Length and Body Mass\",\n       color = \"Species\")"
   },
   {
     "objectID": "model.html",
     "href": "model.html",
     "title": "Model",
     "section": "",
-    "text": "Code\nlibrary(reticulate)\nuse_python(\"/Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/bin/python\", required = TRUE)\npy_config()\n\n\npython:         /Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/bin/python\nlibpython:      /Users/bevanwatson/anaconda3/lib/libpython3.11.dylib\npythonhome:     /Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv:/Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv\nvirtualenv:     /Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/bin/activate_this.py\nversion:        3.11.4 (main, Jul  5 2023, 09:00:44) [Clang 14.0.6 ]\nnumpy:          /Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/lib/python3.11/site-packages/numpy\nnumpy_version:  1.26.4\n\nNOTE: Python version was forced by use_python() function\nCode\nfrom palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import preprocessing"
+    "text": "Code\nlibrary(reticulate)\nuse_python(\"/Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/venv/bin/python\", required = TRUE)\nCode\nfrom palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import preprocessing"
   },
   {
     "objectID": "model.html#get-data",
@@ -53,7 +67,7 @@
     "href": "model.html#get-some-information",
     "title": "Model",
     "section": "Get some information",
-    "text": "Get some information\n\n\nCode\nprint(f\"R^2 {model.score(X,y)}\")\n\n\nR^2 0.8555368759537614\n\n\nCode\nprint(f\"Intercept {model.intercept_}\")\n\n\nIntercept 2169.2697209393973\n\n\nCode\nprint(f\"Columns {X.columns}\")\n\n\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\n\n\nCode\nprint(f\"Coefficients {model.coef_}\")\n\n\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\n\nCode\nfrom vetiver import VetiverModel\nv = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)\n\nfrom pins import board_folder\nfrom vetiver import vetiver_pin_write\nb = board_folder('data/model', allow_pickle_read = True)\nvetiver_pin_write(b, v)\n\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240425T200730Z-7b910\n\n\n\n\nCode\nfrom vetiver import VetiverAPI\napp = VetiverAPI(v, check_prototype = True)\n\n\n\n\nCode\nimport duckdb\nfrom palmerpenguins import penguins\n\ncon = duckdb.connect('my-db.duckdb')\ndf = con.execute(\"SELECT * FROM penguins\").fetchdf().dropna()\ncon.close()"
+    "text": "Get some information\n\n\nCode\nprint(f\"R^2 {model.score(X,y)}\")\n\n\nR^2 0.8555368759537614\n\n\nCode\nprint(f\"Intercept {model.intercept_}\")\n\n\nIntercept 2169.2697209393973\n\n\nCode\nprint(f\"Columns {X.columns}\")\n\n\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\n\n\nCode\nprint(f\"Coefficients {model.coef_}\")\n\n\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\n\nCode\nfrom vetiver import VetiverModel\nv = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)\n\nfrom pins import board_folder\nfrom vetiver import vetiver_pin_write\nb = board_folder('data/model', allow_pickle_read = True)\nvetiver_pin_write(b, v)\n\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240425T203919Z-7b910\n\n\n\n\nCode\nfrom vetiver import VetiverAPI\napp = VetiverAPI(v, check_prototype = True)\n\n\n\n\nCode\nimport duckdb\nfrom palmerpenguins import penguins\n\ncon = duckdb.connect('my-db.duckdb')\ndf = con.execute(\"SELECT * FROM penguins\").fetchdf().dropna()\ncon.close()"
   },
   {
     "objectID": "index.html",
