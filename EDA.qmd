@@ -7,7 +7,7 @@ format:
 
 ## Penguin Size and Mass by Sex and Species
 
-```{r echo=FALSE}
+```{r warning=FALSE, message=FALSE}
 library(palmerpenguins)
 library(dplyr)
 library(ggplot2)
@@ -17,7 +17,7 @@ library(dbplyr)
 df <- palmerpenguins::penguins
 ```
 
-```{r echo=FALSE}
+```{r warning=FALSE, message=FALSE}
 con <- DBI::dbConnect(
   duckdb::duckdb(), 
   dbdir = "my-db.duckdb"
@@ -27,15 +27,15 @@ df <- dplyr::tbl(con, "penguins")
 
 ## Penguin Size vs Mass by Species
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 df %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
   geom_point() + 
   geom_smooth(method = "lm")
 ```
 
-```{r}
-renv::restore(packages = "renv")
+```{#{r warning=FALSE, message=FALSE}
+#renv::restore(packages = "renv")
 ```
 
 ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAaCAYAAADFTB7LAAAAcElEQVR4Xu3OwQmAQAxE0bClWYCW5N06tM6V2YPg5CjoF/JhLoHAi6iqn9eOefUbqrYvHY0cQDLyAlKRNyARmYA0ZMLRkAlGQyaU72tkAtlim7r/vJqDUDjlKBROOQyFU2icQuMUGqfQuBEaV1XPOwEx96nYACK8+wAAAABJRU5ErkJggg== "Run Current Chunk"){width="40"}

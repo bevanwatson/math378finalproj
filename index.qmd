@@ -1,9 +1,9 @@
 ---
-title: "Final_Project"
+title: " Math378 Final Project: Penguins"
 ---
 
-This Bevan Watson's Math 378 Final Project, developed using Chapters 1-6 of Alex Golds "DevOps for Data Science."
+This Bevan Watson's Math 378 Final Project, developed using Chapters 1-6 of Alex Golds "DevOps for Data Science." 
 
-I have completed Exploratory Data Analysis on the "Penguins" dataset, a cleaned version of the data in the PalmerPenguins R package.
+See the "About" Tab for more information about the dataset and methods used.
 
 ![](images/palmerpenguins-01.png)

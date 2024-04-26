@@ -3,11 +3,12 @@ project:
   output-dir: docs
 
 website:
-  title: "Final_Project"
+  title: "MATH378 Final Project: Penguins"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - about.qmd        
       - model.qmd
       - EDA.qmd
 
@@ -17,7 +18,7 @@ format:
     css: styles.css
     toc: true
     toc-float: true
-    favicon: /Users/bevanwatson/Desktop/SPRING2024/MATH378/Final_Project/images/penguin_favicon.jpeg
+    favicon: images/penguinlogo.png
 
 editor: visual
 

@@ -2,6 +2,16 @@
 title: "About"
 ---
 
-About this site
+**Dataset**
 
-![](/Users/bevanwatson/Desktop/SPRING%202024/MATH378/Final_Project/palmerpenguins.png "Penguin")
+![](images/palmerpenguinslogo-03.png)
+
+The exploratory data analysis and predictive model were built using the "palmerpenguins" dataset. The full documentation and reference for the dataset [can be found here](https://allisonhorst.github.io/palmerpenguins/). Feature of the datset are explored on the Penguins EDA tab.
+
+**EDA Methods**
+
+I started with the code provided in the labs by Alex Gold in [DevOps for Data Science]((https://do4ds.com/). I augmented his EDA code with methods found in ["R for Data Science"](https://r4ds.hadley.nz/), as well as techniques taught in DATA364.
+
+**Modeling Methods**
+
+As with EDA, I started with the code provided in DO4DS. I build more models based on exercises from MATH378 and "An Introduction to Statistical Learning" with Applications in Python.
