@@ -25,17 +25,60 @@ con <- DBI::dbConnect(
 df <- dplyr::tbl(con, "penguins")
 ```
 
-## Penguin Size vs Mass by Species
+## Distribution of Flipper Length
+
+```{r warning=FALSE, message=FALSE}
+df %>%
+ggplot(aes(x = flipper_length_mm)) +
+  geom_histogram(binwidth = 5, fill = "darkblue", color = "darkorange") +
+  ggtitle("Distribution of Flipper Length") +
+  xlab("Flipper Length (mm)") +
+  ylab("Count")
+```
+
+## Distribution and Bill length
+
+```{r warning=FALSE, message=FALSE}
+df %>%
+ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 5, fill = "darkblue", color = "darkorange") +
+  ggtitle("Distribution of Flipper Length") +
+  xlab("Flipper Length (mm)") +
+  ylab("Count")
+```
+
+## Penguin Bill Length vs Mass by Species
 
 ```{r warning=FALSE, message=FALSE}
 df %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
   geom_point() + 
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm") +
+  labs(x = "Bill Length (mm)", 
+       y = "Body Mass (g)", 
+       title = "Relationship Between Bill Length and Body Mass")
 ```
 
-```{#{r warning=FALSE, message=FALSE}
-#renv::restore(packages = "renv")
+```{r message = FALSE, warning = FALSE}
+df %>%
+ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point() +
+  labs(
+    title = "Bill Length vs Flipper Length",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+
+```{r message = FALSE, warning = FALSE}
+df %>%
+  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  labs(x = "Bill Length (mm)", 
+       y = "Body Mass (g)", 
+       title = "Relationship Between Bill Length and Body Mass",
+       color = "Species")
 ```
 
 ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAaCAYAAADFTB7LAAAAcElEQVR4Xu3OwQmAQAxE0bClWYCW5N06tM6V2YPg5CjoF/JhLoHAi6iqn9eOefUbqrYvHY0cQDLyAlKRNyARmYA0ZMLRkAlGQyaU72tkAtlim7r/vJqDUDjlKBROOQyFU2icQuMUGqfQuBEaV1XPOwEx96nYACK8+wAAAABJRU5ErkJggg== "Run Current Chunk"){width="40"}
