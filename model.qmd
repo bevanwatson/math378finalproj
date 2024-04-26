@@ -18,6 +18,12 @@ from pandas import get_dummies
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn import preprocessing
+from vetiver import VetiverModel
+from pins import board_folder
+from vetiver import vetiver_pin_write
+import duckdb
+from palmerpenguins import penguins
+from vetiver import VetiverAPI
 ```
 
 ## Get Data
@@ -55,11 +61,7 @@ print(f"Coefficients {model.coef_}")
 ```{python}
 #| message: false
 #| warning: false
-from vetiver import VetiverModel
 v = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)
-
-from pins import board_folder
-from vetiver import vetiver_pin_write
 b = board_folder('data/model', allow_pickle_read = True)
 vetiver_pin_write(b, v)
 ```
@@ -67,16 +69,12 @@ vetiver_pin_write(b, v)
 ```{python}
 #| message: false
 #| warning: false
-from vetiver import VetiverAPI
 app = VetiverAPI(v, check_prototype = True)
 ```
 
 ```{python}
 #| message: false
 #| warning: false
-import duckdb
-from palmerpenguins import penguins
-
 con = duckdb.connect('my-db.duckdb')
 df = con.execute("SELECT * FROM penguins").fetchdf().dropna()
 con.close()

@@ -7,6 +7,10 @@ format:
 
 ## Penguin Size and Mass by Sex and Species
 
+**On this page, I'll use the R library ggplot2 to visualize the dataset, as well as load it into a DuckDB database.**
+
+First, I'll load necessary r packages
+
 ```{r warning=FALSE, message=FALSE}
 library(palmerpenguins)
 library(dplyr)
@@ -14,6 +18,11 @@ library(ggplot2)
 library(DBI)
 library(duckdb)
 library(dbplyr)
+```
+
+Load penguins dataset (cleaned version)
+
+```{warning=FALSE, message=FALSE}
 df <- palmerpenguins::penguins
 ```
 
