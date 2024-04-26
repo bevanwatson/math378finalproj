@@ -34,6 +34,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.impute import SimpleImputer
 from sklearn.tree import plot_tree
+from sklearn.metrics import mean_squared_error, r2_score
 ```
 
 ## Get Data
@@ -108,18 +109,58 @@ plot_tree(tree_model)
 plt.show()
 ```
 
-## Get Some Information from Linear Model
+## Comparing Models:
 
 ```{python}
 #| message: false
 #| warning: false
-#print(f"R^2 {model.score(X,y)}")
-#print(f"Intercept {model.intercept_}")
-#print(f"Columns {X.columns}")
-#print(f"Coefficients {model.coef_}")
+##Note to grader: HATGPT WROTE THIS
+def fit_and_evaluate(X, y):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=28)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    return {
+        'r2_score': r2_score(y_test, y_pred),
+        'mse': mean_squared_error(y_test, y_pred),
+        'intercept': model.intercept_,
+        'coefficients': model.coef_,
+        'columns': X.columns
+    }
+
+# Feature sets for different models
+features = [
+    ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'species', 'sex'],
+    ['bill_length_mm', 'flipper_length_mm', 'species', 'sex'],
+    ['bill_length_mm', 'bill_depth_mm', 'species', 'sex'],
+    ['bill_depth_mm', 'flipper_length_mm', 'sex'],
+    ['bill_length_mm', 'species', 'sex'],
+    ['bill_depth_mm', 'species', 'sex'],
+    ['bill_depth_mm', 'species', 'sex']  # Note this is duplicated
+]
+
+# Dictionary to store results
+results = {}
+
+# Evaluate each model based on its feature set
+for i, feature_set in enumerate(features):
+    X = get_dummies(df[feature_set], drop_first=True)
+    y = df['body_mass_g']
+    results[f'Model_{i+1}'] = fit_and_evaluate(X, y)
+
+# Print results for each model
+for model_name, stats in results.items():
+    print(f"{model_name} Results:")
+    print(f"R^2 Score: {stats['r2_score']}")
+    print(f"MSE: {stats['mse']}")
+    print(f"Intercept: {stats['intercept']}")
+    print("Coefficients:")
+    for coeff, col in zip(stats['coefficients'], stats['columns']):
+        print(f"  {col}: {coeff}")
+    print("\n")
 ```
 
-## Write Initial Model to API
+## Write Initial Model (All 5 predictor) to API
 
 ```{python}
 #| message: false
